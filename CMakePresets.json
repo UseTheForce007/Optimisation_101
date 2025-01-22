@@ -45,6 +45,14 @@
         {
             "name": "release",
             "configurePreset": "release"
+        },
+        {
+            "name": "static_analysis",
+            "configurePreset": "release",
+            "description": "Run Clang static analysis",
+            "targets": [
+                "static_analysis"
+            ]
         }
     ],
     "testPresets": [

@@ -15,17 +15,22 @@ enable_testing()
 # Generate compile_commands.json
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+# Add executable for main function
+add_executable(main src/main.cpp src/matrix_multiplication.cpp)
+
 # Custom targets for compiler reports
 add_custom_target(static_analysis
-    COMMAND ${CMAKE_COMMAND} -E echo "Running Clang static analysis..."
-    COMMAND clang++ -Xclang -analyze -fsyntax-only ${CMAKE_SOURCE_DIR}/src/*.cpp
-    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    COMMAND /usr/bin/clang++ -Xclang -analyze -fsyntax-only -I${CMAKE_SOURCE_DIR}/include ${CMAKE_SOURCE_DIR}/src/*.cpp > ${CMAKE_BINARY_DIR}/static_analysis_report.txt 2>&1
     COMMENT "Running Clang static analysis"
 )
 
+if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+    add_compile_options(-Rpass=loop-vectorize -Rpass-missed=loop-vectorize -Rpass-analysis=loop-vectorize)
+endif()
+
 add_custom_target(optimization_report
     COMMAND ${CMAKE_COMMAND} -E echo "Generating optimization report..."
-    COMMAND clang++ -O3 -Rpass=loop-vectorize -Rpass-missed=loop-vectorize ${CMAKE_SOURCE_DIR}/src/*.cpp
+    COMMAND clang++ -O3 -Rpass=loop-vectorize -Rpass-missed=loop-vectorize -I${CMAKE_SOURCE_DIR}/include ${CMAKE_SOURCE_DIR}/src/*.cpp > ${CMAKE_BINARY_DIR}/vectorization_report.txt 2>&1
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     COMMENT "Running Clang optimization report"
 )
