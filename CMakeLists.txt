@@ -24,8 +24,15 @@ add_executable(main src/main.cpp src/BaseCase.cpp src/SafeArray.cpp)
 
 # Custom targets for compiler reports
 add_custom_target(static_analysis
-    COMMAND /usr/bin/clang++ -Xclang -analyze -fsyntax-only -I${CMAKE_SOURCE_DIR}/include ${CMAKE_SOURCE_DIR}/src/*.cpp > ${CMAKE_BINARY_DIR}/static_analysis_report.txt 2>&1
-    COMMENT "Running Clang static analysis"
+    COMMAND scan-build-18
+    --use-analyzer=/usr/bin/clang++-18
+    -enable-checker core,cplusplus,unix,security
+    -o ${CMAKE_BINARY_DIR}/analysis
+    -v
+    ninja
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    COMMENT "Running static analysis"
+    DEPENDS main
 )
 
 add_custom_target(optimization_report
