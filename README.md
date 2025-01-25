@@ -96,18 +96,18 @@ MultiplyFlatMem with BLOCK SIZE = 32
 
 | Benchmark                        | Time (ns)        | CPU (ns)         | Iterations |
 | -------------------------------- | ---------------- | ---------------- | ---------- |
-| BM_FlatMatrixMultiplication/32   | 11,919 ns        | 11,919 ns        | 57,937     |
-| BM_FlatMatrixMultiplication/64   | 94,464 ns        | 94,458 ns        | 7,317      |
-| BM_FlatMatrixMultiplication/128  | 2,154,553 ns     | 2,154,468 ns     | 322        |
-| BM_FlatMatrixMultiplication/256  | 16,595,874 ns    | 16,595,375 ns    | 42         |
-| BM_FlatMatrixMultiplication/512  | 244,102,087 ns   | 244,098,716 ns   | 3          |
-| BM_FlatMatrixMultiplication/1024 | 3,958,860,979 ns | 3,958,515,967 ns | 1          |
-| BM_MultiplyFlatMem/32            | 15,593 ns        | 15,592 ns        | 41,669     |
-| BM_MultiplyFlatMem/64            | 124,773 ns       | 124,764 ns       | 5,594      |
-| BM_MultiplyFlatMem/128           | 1,001,346 ns     | 1,001,280 ns     | 693        |
-| BM_MultiplyFlatMem/256           | 9,113,484 ns     | 9,112,576 ns     | 74         |
-| BM_MultiplyFlatMem/512           | 192,419,344 ns   | 192,415,704 ns   | 4          |
-| BM_MultiplyFlatMem/1024          | 2,362,402,980 ns | 2,362,253,045 ns | 1          |
+| BM_FlatMatrixMultiplication/32   | 12,168 ns        | 12,167 ns        | 56,025     |
+| BM_FlatMatrixMultiplication/64   | 85,585 ns        | 85,582 ns        | 8,099      |
+| BM_FlatMatrixMultiplication/128  | 2,144,447 ns     | 2,144,336 ns     | 326        |
+| BM_FlatMatrixMultiplication/256  | 16,740,721 ns    | 16,739,794 ns    | 42         |
+| BM_FlatMatrixMultiplication/512  | 251,166,479 ns   | 251,159,662 ns   | 3          |
+| BM_FlatMatrixMultiplication/1024 | 3,989,131,536 ns | 3,988,868,152 ns | 1          |
+| BM_MultiplyFlatMem/32            | 17,314 ns        | 17,314 ns        | 40,165     |
+| BM_MultiplyFlatMem/64            | 129,237 ns       | 129,235 ns       | 5,387      |
+| BM_MultiplyFlatMem/128           | 1,021,522 ns     | 1,021,520 ns     | 680        |
+| BM_MultiplyFlatMem/256           | 9,133,922 ns     | 9,133,807 ns     | 73         |
+| BM_MultiplyFlatMem/512           | 194,211,950 ns   | 194,203,834 ns   | 4          |
+| BM_MultiplyFlatMem/1024          | 2,365,241,710 ns | 2,365,162,738 ns | 1          |
 
 ### Attempted Optimisation
 
