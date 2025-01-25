@@ -84,3 +84,31 @@ Total number of elements = N
 
 - 1D is still faster than 2D
 - Current Vector implementation is faster than the Array implementation
+- Will focus on optimising the Vector implementation instead
+
+## Cache Blocking 
+
+MultiplyFlatMem with BLOCK SIZE = 32
+
+[Code](src/MemoryAllocation.cpp)
+
+### Benchmark Results
+
+| Benchmark                        | Time (ns)        | CPU (ns)         | Iterations |
+| -------------------------------- | ---------------- | ---------------- | ---------- |
+| BM_FlatMatrixMultiplication/32   | 11,919 ns        | 11,919 ns        | 57,937     |
+| BM_FlatMatrixMultiplication/64   | 94,464 ns        | 94,458 ns        | 7,317      |
+| BM_FlatMatrixMultiplication/128  | 2,154,553 ns     | 2,154,468 ns     | 322        |
+| BM_FlatMatrixMultiplication/256  | 16,595,874 ns    | 16,595,375 ns    | 42         |
+| BM_FlatMatrixMultiplication/512  | 244,102,087 ns   | 244,098,716 ns   | 3          |
+| BM_FlatMatrixMultiplication/1024 | 3,958,860,979 ns | 3,958,515,967 ns | 1          |
+| BM_MultiplyFlatMem/32            | 15,593 ns        | 15,592 ns        | 41,669     |
+| BM_MultiplyFlatMem/64            | 124,773 ns       | 124,764 ns       | 5,594      |
+| BM_MultiplyFlatMem/128           | 1,001,346 ns     | 1,001,280 ns     | 693        |
+| BM_MultiplyFlatMem/256           | 9,113,484 ns     | 9,112,576 ns     | 74         |
+| BM_MultiplyFlatMem/512           | 192,419,344 ns   | 192,415,704 ns   | 4          |
+| BM_MultiplyFlatMem/1024          | 2,362,402,980 ns | 2,362,253,045 ns | 1          |
+
+### Attempted Optimisation
+
+- Cache Blocking
