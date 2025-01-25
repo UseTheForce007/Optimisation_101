@@ -1,5 +1,8 @@
 #include "BaseCase.h"
 #include <cstddef>
+#include <cstdlib> // for rand()
+#include <ctime>   // for time()
+#include <random>
 #include <vector>
 
 using Matrix = std::vector<std::vector<int>>;
@@ -32,4 +35,16 @@ FlatMatrix multiply_flat(const FlatMatrix &A, const FlatMatrix &B, size_t n) {
   }
 
   return C;
+}
+
+FlatMatrix create_random_flat_matrix(size_t n, int seed) {
+  FlatMatrix matrix(n * n);
+  std::mt19937 gen(seed);
+  std::uniform_int_distribution<> dis(1, 100);
+
+  for (size_t i = 0; i < n * n; ++i) {
+    matrix[i] = dis(gen);
+  }
+
+  return matrix;
 }

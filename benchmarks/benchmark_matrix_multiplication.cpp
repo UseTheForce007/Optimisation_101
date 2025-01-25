@@ -45,11 +45,9 @@ static void BM_FlatMatrixMultiplication_Random(benchmark::State &state) {
   }
 }
 
-BENCHMARK(BM_MatrixMultiplication_Random)
-    ->RangeMultiplier(4)
-    ->Ranges({{8, 32}});
+BENCHMARK(BM_MatrixMultiplication_Random)->RangeMultiplier(2)->Range(32, 1024);
 BENCHMARK(BM_FlatMatrixMultiplication_Random)
-    ->RangeMultiplier(4)
-    ->Ranges({{8, 32}});
+    ->RangeMultiplier(2)
+    ->Range(32, 1024);
 
-// BENCHMARK_MAIN();
+BENCHMARK_MAIN();
