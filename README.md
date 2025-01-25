@@ -94,20 +94,20 @@ MultiplyFlatMem with BLOCK SIZE = 32
 
 ### Benchmark Results
 
-| Benchmark                        | Time (ns)        | CPU (ns)         | Iterations |
-| -------------------------------- | ---------------- | ---------------- | ---------- |
-| BM_FlatMatrixMultiplication/32   | 12,168 ns        | 12,167 ns        | 56,025     |
-| BM_FlatMatrixMultiplication/64   | 85,585 ns        | 85,582 ns        | 8,099      |
-| BM_FlatMatrixMultiplication/128  | 2,144,447 ns     | 2,144,336 ns     | 326        |
-| BM_FlatMatrixMultiplication/256  | 16,740,721 ns    | 16,739,794 ns    | 42         |
-| BM_FlatMatrixMultiplication/512  | 251,166,479 ns   | 251,159,662 ns   | 3          |
-| BM_FlatMatrixMultiplication/1024 | 3,989,131,536 ns | 3,988,868,152 ns | 1          |
-| BM_MultiplyFlatMem/32            | 17,314 ns        | 17,314 ns        | 40,165     |
-| BM_MultiplyFlatMem/64            | 129,237 ns       | 129,235 ns       | 5,387      |
-| BM_MultiplyFlatMem/128           | 1,021,522 ns     | 1,021,520 ns     | 680        |
-| BM_MultiplyFlatMem/256           | 9,133,922 ns     | 9,133,807 ns     | 73         |
-| BM_MultiplyFlatMem/512           | 194,211,950 ns   | 194,203,834 ns   | 4          |
-| BM_MultiplyFlatMem/1024          | 2,365,241,710 ns | 2,365,162,738 ns | 1          |
+| Benchmark                        | Time (ms) | CPU (ms) | Iterations |
+| -------------------------------- | --------- | -------- | ---------- |
+| BM_FlatMatrixMultiplication/32   | 0.011     | 0.011    | 65,878     |
+| BM_FlatMatrixMultiplication/64   | 0.080     | 0.080    | 8,655      |
+| BM_FlatMatrixMultiplication/128  | 2.12      | 2.12     | 328        |
+| BM_FlatMatrixMultiplication/256  | 16.0      | 16.0     | 43         |
+| BM_FlatMatrixMultiplication/512  | 217       | 217      | 3          |
+| BM_FlatMatrixMultiplication/1024 | 3703      | 3702     | 1          |
+| BM_MultiplyFlatMem/32            | 0.016     | 0.016    | 43,587     |
+| BM_MultiplyFlatMem/64            | 0.128     | 0.127    | 5,448      |
+| BM_MultiplyFlatMem/128           | 1.02      | 1.02     | 677        |
+| BM_MultiplyFlatMem/256           | 8.80      | 8.80     | 79         |
+| BM_MultiplyFlatMem/512           | 209       | 209      | 3          |
+| BM_MultiplyFlatMem/1024          | 2402      | 2402     | 1          |
 
 ### Attempted Optimisation
 

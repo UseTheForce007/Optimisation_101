@@ -15,4 +15,7 @@ static void BM_MultiplyFlatMem(benchmark::State &state) {
   }
 }
 
-BENCHMARK(BM_MultiplyFlatMem)->RangeMultiplier(2)->Range(32, 1024);
+BENCHMARK(BM_MultiplyFlatMem)
+    ->RangeMultiplier(2)
+    ->Range(32, 1024)
+    ->Unit(benchmark::kMillisecond);
