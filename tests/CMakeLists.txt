@@ -1,7 +1,9 @@
-# file(GLOB_RECURSE TEST_SOURCES "*.cpp")
+file(GLOB_RECURSE TEST_SOURCES "*.cpp")
 
-# add_executable(tests ${TEST_SOURCES})
+include_directories(${CMAKE_SOURCE_DIR}/include)
 
-# target_link_libraries(tests PRIVATE optimisation_101 gtest gtest_main)
+add_executable(tests ${TEST_SOURCES})
 
-# add_test(NAME all_tests COMMAND tests)
+target_link_libraries(tests PRIVATE optimisation_101 gtest gtest_main)
+
+add_test(NAME all_tests COMMAND tests)

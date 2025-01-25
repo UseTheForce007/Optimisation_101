@@ -1,5 +1,4 @@
 # Optimising Matrix Multiplication
-
 ## Journey So Far
 
 In this project, I am exploring different methods to optimize matrix multiplication.
@@ -49,17 +48,31 @@ This is a flat matrix multiplication function that takes two flat matrices as in
 
 ## Benchmark Results
 
-| Benchmark                       | Time (ns)  | CPU (ns)   | Iterations |
-| ------------------------------- | ---------- | ---------- | ---------- |
-| BM_MatrixMultiplication/8       | 363        | 363        | 1,947,224  |
-| BM_MatrixMultiplication/16      | 2,073      | 2,073      | 337,793    |
-| BM_MatrixMultiplication/32      | 14,590     | 14,590     | 47,837     |
-| BM_MatrixMultiplication/64      | 111,250    | 111,246    | 6,240      |
-| BM_MatrixMultiplication/128     | 837,802    | 837,747    | 827        |
-| BM_MatrixMultiplication/256     | 8,065,433  | 8,065,078  | 85         |
-| BM_FlatMatrixMultiplication/8   | 221        | 221        | 3,175,246  |
-| BM_FlatMatrixMultiplication/16  | 1,685      | 1,685      | 414,133    |
-| BM_FlatMatrixMultiplication/32  | 12,569     | 12,569     | 55,222     |
-| BM_FlatMatrixMultiplication/64  | 98,579     | 98,575     | 7,024      |
-| BM_FlatMatrixMultiplication/128 | 2,015,356  | 2,015,252  | 351        |
-| BM_FlatMatrixMultiplication/256 | 15,784,330 | 15,782,952 | 43         |
+| Benchmark                               | Time (ns)        | CPU (ns)         | Iterations |
+| --------------------------------------- | ---------------- | ---------------- | ---------- |
+| BM_MatrixMultiplication_Random/64       | 121,687 ns       | 121,681 ns       | 5,781      |
+| BM_MatrixMultiplication_Random/256      | 8,825,548 ns     | 8,825,185 ns     | 79         |
+| BM_MatrixMultiplication_Random/1024     | 979,737,614 ns   | 979,688,995 ns   | 1          |
+| BM_FlatMatrixMultiplication_Random/64   | 79,133 ns        | 79,125 ns        | 8,794      |
+| BM_FlatMatrixMultiplication_Random/256  | 15,697,405 ns    | 15,696,589 ns    | 45         |
+| BM_FlatMatrixMultiplication_Random/1024 | 3,889,675,488 ns | 3,889,346,404 ns | 1          |
+
+## Using an Array instead of a Vector
+[Link to the array code](include/SafeArray.h)
+
+[Link to the matrix multiplication with array](src/SafeArray.cpp)
+
+## Benchmark Results
+
+| Benchmark                              | Time (ns) | CPU (ns)  | Iterations |
+| -------------------------------------- | --------- | --------- | ---------- |
+| BM_SafeArrayMultiplication_Random/64   | 468 ns    | 467 ns    | 1,475,142  |
+| BM_SafeArrayMultiplication_Random/256  | 4,088 ns  | 4,088 ns  | 172,892    |
+| BM_SafeArrayMultiplication_Random/1024 | 41,929 ns | 41,923 ns | 17,341     |
+
+
+## Optimisation
+
+- Flattening the Matrix
+- Using an Array instead of a Vector
+- Fixed Size Array
