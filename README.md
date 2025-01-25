@@ -46,33 +46,41 @@ FlatMatrix multiply_flat(const FlatMatrix &A, const FlatMatrix &B, size_t n) {
 ```
 This is a flat matrix multiplication function that takes two flat matrices as input and returns the product of the two matrices. The matrices are represented as vectors of integers.
 
-## Benchmark Results
+### Benchmark Results
 
-| Benchmark                               | Time (ns)        | CPU (ns)         | Iterations |
-| --------------------------------------- | ---------------- | ---------------- | ---------- |
-| BM_MatrixMultiplication_Random/64       | 121,687 ns       | 121,681 ns       | 5,781      |
-| BM_MatrixMultiplication_Random/256      | 8,825,548 ns     | 8,825,185 ns     | 79         |
-| BM_MatrixMultiplication_Random/1024     | 979,737,614 ns   | 979,688,995 ns   | 1          |
-| BM_FlatMatrixMultiplication_Random/64   | 79,133 ns        | 79,125 ns        | 8,794      |
-| BM_FlatMatrixMultiplication_Random/256  | 15,697,405 ns    | 15,696,589 ns    | 45         |
-| BM_FlatMatrixMultiplication_Random/1024 | 3,889,675,488 ns | 3,889,346,404 ns | 1          |
+Total number of elements = N * N
+
+| Benchmark                             | Time (ns) | CPU (ns)  | Iterations |
+| ------------------------------------- | --------- | --------- | ---------- |
+| BM_MatrixMultiplication_Random/8      | 395 ns    | 395 ns    | 1,795,230  |
+| BM_MatrixMultiplication_Random/16     | 2,270 ns  | 2,270 ns  | 305,677    |
+| BM_MatrixMultiplication_Random/32     | 16,134 ns | 16,134 ns | 42,623     |
+| BM_FlatMatrixMultiplication_Random/8  | 201 ns    | 201 ns    | 3,445,345  |
+| BM_FlatMatrixMultiplication_Random/16 | 1,452 ns  | 1,452 ns  | 476,767    |
+| BM_FlatMatrixMultiplication_Random/32 | 10,411 ns | 10,409 ns | 66,010     |
 
 ## Using an Array instead of a Vector
 [Link to the array code](include/SafeArray.h)
 
 [Link to the matrix multiplication with array](src/SafeArray.cpp)
 
-## Benchmark Results
+### Benchmark Results
+
+Total number of elements = N
 
 | Benchmark                              | Time (ns) | CPU (ns)  | Iterations |
 | -------------------------------------- | --------- | --------- | ---------- |
-| BM_SafeArrayMultiplication_Random/64   | 468 ns    | 467 ns    | 1,475,142  |
-| BM_SafeArrayMultiplication_Random/256  | 4,088 ns  | 4,088 ns  | 172,892    |
-| BM_SafeArrayMultiplication_Random/1024 | 41,929 ns | 41,923 ns | 17,341     |
+| BM_SafeArrayMultiplication_Random/64   | 289 ns    | 289 ns    | 2,451,525  |
+| BM_SafeArrayMultiplication_Random/256  | 2,307 ns  | 2,301 ns  | 308,611    |
+| BM_SafeArrayMultiplication_Random/1024 | 18,615 ns | 18,585 ns | 36,599     |
 
-
-## Optimisation
+### Attempted Optimisation
 
 - Flattening the Matrix
 - Using an Array instead of a Vector
 - Fixed Size Array
+
+### Conlusion
+
+- 1D is still faster than 2D
+- Current Vector implementation is faster than the Array implementation

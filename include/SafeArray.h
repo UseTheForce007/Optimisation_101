@@ -15,15 +15,19 @@ public:
     return N;
   }
   T &operator[](unsigned int i) { // Safe [] array index operator
+#ifdef DEBUG
     if (i >= N) {
       throw std::out_of_range("Index out of range");
     }
+#endif
     return a[i]; // Return reference to a[i]
   }
   const T &operator[](unsigned int i) const { // Const version of operator[]
+#ifdef DEBUG
     if (i >= N) {
       throw std::out_of_range("Index out of range");
     }
+#endif
     return a[i]; // Return reference to a[i]
   }
 };

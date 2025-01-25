@@ -41,14 +41,15 @@ static void BM_FlatMatrixMultiplication_Random(benchmark::State &state) {
   FlatMatrix B = flattenMatrix(createRandomMatrix(n));
   for (auto _ : state) {
     FlatMatrix C = multiply_flat(A, B, n);
+    // benchmark::DoNotOptimize(C);
   }
 }
 
 BENCHMARK(BM_MatrixMultiplication_Random)
     ->RangeMultiplier(4)
-    ->Ranges({{64, 1024}});
+    ->Ranges({{8, 32}});
 BENCHMARK(BM_FlatMatrixMultiplication_Random)
     ->RangeMultiplier(4)
-    ->Ranges({{64, 1024}});
+    ->Ranges({{8, 32}});
 
 // BENCHMARK_MAIN();
