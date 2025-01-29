@@ -1,5 +1,5 @@
 #include "BaseCase.h"
-#include "MemoryAllocation.h"
+#include "Blocking.h"
 #include "SafeArray.h"
 #include <cstdlib>
 #include <ctime>
@@ -92,12 +92,12 @@ TEST(MatrixMultiplicationTest, FlatVsSafeArray) {
   }
 }
 
-TEST(MatrixMultiplicationTest, MemoryAllocation) {
+TEST(MatrixMultiplicationTest, Blocking) {
   constexpr size_t MATRIX_DIM = 32;
   FlatMatrix A = create_random_flat_matrix(MATRIX_DIM, 42);
   FlatMatrix B = create_random_flat_matrix(MATRIX_DIM, 41);
 
-  FlatMatrix C_mem = multiply_flat_mem(A, B, MATRIX_DIM);
+  FlatMatrix C_mem = Blocking(A, B, MATRIX_DIM);
   FlatMatrix C_flat = multiply_flat(A, B, MATRIX_DIM);
 
   EXPECT_TRUE(compare_flat_matrices(C_mem, C_flat));

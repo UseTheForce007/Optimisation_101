@@ -15,12 +15,14 @@ enable_testing()
 # Generate compile_commands.json
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-    add_compile_options(-Rpass=loop-vectorize -Rpass-missed=loop-vectorize -Rpass-analysis=loop-vectoriz -O3)
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
+    add_compile_options(-O3 -DNDEBUG -Rpass=loop-vectorize -Rpass-missed=loop-vectorize -Rpass-analysis=loop-vectorize)
+elseif(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    add_compile_options(-g -O0)
 endif()
 
 # Add executable for main function
-add_executable(main src/main.cpp src/BaseCase.cpp src/SafeArray.cpp)
+add_executable(main src/main.cpp src/BaseCase.cpp src/Blocking.cpp)
 
 # Custom targets for compiler reports
 add_custom_target(static_analysis

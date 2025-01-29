@@ -22,7 +22,8 @@
             "inherits": "default",
             "description": "Configure for Debug build",
             "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug"
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_CXX_FLAGS_DEBUG": "-g -O0"
             }
         },
         {
@@ -30,7 +31,8 @@
             "inherits": "default",
             "description": "Configure for Release build",
             "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Release"
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_CXX_FLAGS_RELEASE": "-O3 -DNDEBUG"
             }
         }
     ],
