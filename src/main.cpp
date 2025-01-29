@@ -1,27 +1,11 @@
 #include "BaseCase.h"
-#include <SafeArray.h>
+#include "Blocking.h"
 #include <iostream>
 
 int main() {
-  Matrix A = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-  Matrix B = {{9, 8, 7}, {6, 5, 4}, {3, 2, 1}};
-  Matrix C = multiply(A, B);
-
-  constexpr size_t MATRIX_DIM = 8; // 8x8 matrix
-
-  const SafeArray<int, 64> matrixFirst; // 8x8 = 64 elements
-  const SafeArray<int, 64> matrixSecond;
-  SafeArray<int, 64> resultMatrix;
-
-  ArrayMulTemplate(matrixFirst, matrixSecond, resultMatrix, MATRIX_DIM);
-
-  // std::cout << "Result of matrix multiplication:" << std::endl;
-  // for (const auto& row : C) {
-  //     for (const auto& elem : row) {
-  //         std::cout << elem << " ";
-  //     }
-  //     std::cout << std::endl;
-  // }
-
+  constexpr size_t n = 1024;
+  FlatMatrix A = create_random_flat_matrix(n, 42);
+  FlatMatrix B = create_random_flat_matrix(n, 41);
+  FlatMatrix C = Blocking(A, B, n);
   return 0;
 }

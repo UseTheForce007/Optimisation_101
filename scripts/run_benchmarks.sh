@@ -25,6 +25,9 @@ ${BENCHMARK_BINARY} \
 if [ $? -eq 0 ]; then
     echo -e "\033[32mBenchmarks ran successfully.\033[0m"
     echo "Results saved to: ${OUTPUT_FILE}"
+    
+    # Convert CSV to a readable table format
+    column -s, -t < ${OUTPUT_FILE} | less -S
 else
     echo -e "\033[31mBenchmarks failed to run.\033[0m"
     exit 1

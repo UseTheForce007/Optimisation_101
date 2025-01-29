@@ -88,27 +88,44 @@ Total number of elements = N
 
 ## Cache Blocking 
 
-MultiplyFlatMem with BLOCK SIZE = 32
+MultiplyFlatBlock
 
-[Code](src/MemoryAllocation.cpp)
+[Code](src/Blocking.cpp)
 
 ### Benchmark Results
+## Benchmark Results
 
-| Benchmark                        | Time (ms) | CPU (ms) | Iterations |
-| -------------------------------- | --------- | -------- | ---------- |
-| BM_FlatMatrixMultiplication/32   | 0.011     | 0.011    | 65,878     |
-| BM_FlatMatrixMultiplication/64   | 0.080     | 0.080    | 8,655      |
-| BM_FlatMatrixMultiplication/128  | 2.12      | 2.12     | 328        |
-| BM_FlatMatrixMultiplication/256  | 16.0      | 16.0     | 43         |
-| BM_FlatMatrixMultiplication/512  | 217       | 217      | 3          |
-| BM_FlatMatrixMultiplication/1024 | 3703      | 3702     | 1          |
-| BM_MultiplyFlatMem/32            | 0.016     | 0.016    | 43,587     |
-| BM_MultiplyFlatMem/64            | 0.128     | 0.127    | 5,448      |
-| BM_MultiplyFlatMem/128           | 1.02      | 1.02     | 677        |
-| BM_MultiplyFlatMem/256           | 8.80      | 8.80     | 79         |
-| BM_MultiplyFlatMem/512           | 209       | 209      | 3          |
-| BM_MultiplyFlatMem/1024          | 2402      | 2402     | 1          |
+| Benchmark                            | Time        | CPU         | Iterations |
+| ------------------------------------ | ----------- | ----------- | ---------- |
+| BM_FlatMatrixMultiplication/32       | 0.012 ms    | 0.012 ms    | 60464      |
+| BM_FlatMatrixMultiplication/64       | 0.088 ms    | 0.088 ms    | 7841       |
+| BM_FlatMatrixMultiplication/128      | 2.22 ms     | 2.22 ms     | 314        |
+| BM_FlatMatrixMultiplication/256      | 16.6 ms     | 16.6 ms     | 41         |
+| BM_FlatMatrixMultiplication/512      | 238 ms      | 237 ms      | 3          |
+| **BM_FlatMatrixMultiplication/1024** | **4133 ms** | **4126 ms** | 1          |
+| BM_MultiplyFlatBlock/32/16           | 0.019 ms    | 0.019 ms    | 37559      |
+| BM_MultiplyFlatBlock/64/16           | 0.147 ms    | 0.147 ms    | 4715       |
+| BM_MultiplyFlatBlock/128/16          | 1.18 ms     | 1.18 ms     | 591        |
+| BM_MultiplyFlatBlock/256/16          | 9.52 ms     | 9.52 ms     | 73         |
+| BM_MultiplyFlatBlock/512/16          | 88.1 ms     | 88.1 ms     | 8          |
+| **BM_MultiplyFlatBlock/1024/16**     | **1878 ms** | **1877 ms** | 1          |
+| BM_MultiplyFlatBlock/32/32           | 0.018 ms    | 0.018 ms    | 40094      |
+| BM_MultiplyFlatBlock/64/32           | 0.139 ms    | 0.139 ms    | 5063       |
+| BM_MultiplyFlatBlock/128/32          | 1.12 ms     | 1.12 ms     | 606        |
+| BM_MultiplyFlatBlock/256/32          | 10.1 ms     | 10.1 ms     | 67         |
+| BM_MultiplyFlatBlock/512/32          | 202 ms      | 202 ms      | 3          |
+| **BM_MultiplyFlatBlock/1024/32**     | **2455 ms** | **2452 ms** | 1          |
+| BM_MultiplyFlatBlock/32/64           | 0.017 ms    | 0.017 ms    | 41280      |
+| BM_MultiplyFlatBlock/64/64           | 0.136 ms    | 0.136 ms    | 5091       |
+| BM_MultiplyFlatBlock/128/64          | 1.22 ms     | 1.22 ms     | 571        |
+| BM_MultiplyFlatBlock/256/64          | 17.8 ms     | 17.8 ms     | 39         |
+| BM_MultiplyFlatBlock/512/64          | 204 ms      | 203 ms      | 3          |
+| **BM_MultiplyFlatBlock/1024/64**     | **2583 ms** | **2581 ms** | 1          |
 
 ### Attempted Optimisation
+- Cache Blocking with different block sizes
 
-- Cache Blocking
+### Conclusion
+- Cache Blocking with block size 16 is the fastest
+- Total Speedup : 4133 ms / 1878 ms = 2.2x
+
