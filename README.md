@@ -151,7 +151,7 @@ MultiplyFlatBlock
 | **BM_MultiplyFlatBlock/1024/16** | **1789**  | **1789** | 1          |
 
 ### Attempted Optimisation
-- Using SIMD instructions to perform 4 multiplications at once
+- Using SIMD instructions to perform 8 multiplications at once
 - Using Cache Blocking with block size 16
 
 ### Conclusion
