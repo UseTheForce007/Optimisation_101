@@ -1,7 +1,7 @@
 # Optimising Matrix Multiplication
 ## Journey So Far
 
-In this project, I am exploring different methods to optimize matrix multiplication.
+In this project, I am exploring different methods to optimize matrix multiplication for square matrices.
 
 I have also set up benchmarks to compare the performance. The benchmarks are implemented using the Google Benchmark library, which provides a robust framework for measuring the performance of the functions under various conditions.
 
@@ -127,5 +127,33 @@ MultiplyFlatBlock
 
 ### Conclusion
 - Cache Blocking with block size 16 is the fastest
-- Total Speedup : 4133 ms / 1878 ms = 2.2x
+- Total Speedup at matrix Dim (1024) : 4133 ms / 1878 ms = 2.2x
 
+## SIMD
+
+[SIMD](src/SIMD.cpp)
+
+### Benchmark Results
+
+| Benchmark                        | Time (ms) | CPU (ms) | Iterations |
+| -------------------------------- | --------- | -------- | ---------- |
+| BM_SIMD/32                       | 0.001     | 0.001    | 471,691    |
+| BM_SIMD/64                       | 0.011     | 0.011    | 60,121     |
+| BM_SIMD/128                      | 0.095     | 0.095    | 7,435      |
+| BM_SIMD/256                      | 0.790     | 0.790    | 873        |
+| BM_SIMD/512                      | 9.86      | 9.86     | 70         |
+| **BM_SIMD/1024**                 | **225**   | **225**  | 3          |
+| BM_MultiplyFlatBlock/32/16       | 0.017     | 0.017    | 40,411     |
+| BM_MultiplyFlatBlock/64/16       | 0.137     | 0.137    | 4,765      |
+| BM_MultiplyFlatBlock/128/16      | 1.10      | 1.10     | 632        |
+| BM_MultiplyFlatBlock/256/16      | 8.78      | 8.78     | 79         |
+| BM_MultiplyFlatBlock/512/16      | 81.6      | 81.6     | 8          |
+| **BM_MultiplyFlatBlock/1024/16** | **1789**  | **1789** | 1          |
+
+### Attempted Optimisation
+- Using SIMD instructions to perform 4 multiplications at once
+- Using Cache Blocking with block size 16
+
+### Conclusion
+- Improved performance further by using SIMD instructions
+- Total Speedup at matrix Dim (1024) : 1789 ms / 225 ms = 7.9x

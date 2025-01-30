@@ -1,5 +1,6 @@
 #include "BaseCase.h"
 #include "Blocking.h"
+#include "SIMD.h"
 #include "SafeArray.h"
 #include <cstdlib>
 #include <ctime>
@@ -97,10 +98,21 @@ TEST(MatrixMultiplicationTest, Blocking) {
   FlatMatrix A = create_random_flat_matrix(MATRIX_DIM, 42);
   FlatMatrix B = create_random_flat_matrix(MATRIX_DIM, 41);
 
-  FlatMatrix C_mem = Blocking(A, B, MATRIX_DIM);
+  FlatMatrix C_block = Blocking(A, B, MATRIX_DIM);
   FlatMatrix C_flat = multiply_flat(A, B, MATRIX_DIM);
 
-  EXPECT_TRUE(compare_flat_matrices(C_mem, C_flat));
+  EXPECT_TRUE(compare_flat_matrices(C_block, C_flat));
+}
+
+TEST(MatrixMultiplicationTest, SIMD) {
+  constexpr size_t MATRIX_DIM = 32;
+  FlatMatrix A = create_random_flat_matrix(MATRIX_DIM, 42);
+  FlatMatrix B = create_random_flat_matrix(MATRIX_DIM, 41);
+
+  FlatMatrix C_SIMD = SIMD(A, B, MATRIX_DIM);
+  FlatMatrix C_flat = multiply_flat(A, B, MATRIX_DIM);
+
+  EXPECT_TRUE(compare_flat_matrices(C_SIMD, C_flat));
 }
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
