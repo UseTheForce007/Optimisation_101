@@ -13,5 +13,5 @@ static void BM_SIMD(benchmark::State &state) {
   }
 }
 
-BENCHMARK(BM_SIMD)->RangeMultiplier(2)->Range(32, 1024)->Unit(
+BENCHMARK(BM_SIMD)->RangeMultiplier(2)->Range(512, 4096)->Unit(
     benchmark::kMillisecond);

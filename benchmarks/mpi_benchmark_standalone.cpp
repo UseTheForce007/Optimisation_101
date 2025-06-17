@@ -19,7 +19,7 @@ void benchmarkMPIMultiplier() {
   }
 
   // Test different matrix sizes
-  std::vector<size_t> matrix_sizes = {64, 128, 256, 512};
+  std::vector<size_t> matrix_sizes = {512, 1024, 2048, 4096};
   const size_t block_size = 16; // Fixed block size
 
   for (size_t n : matrix_sizes) {

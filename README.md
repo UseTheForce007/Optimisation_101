@@ -157,3 +157,62 @@ MultiplyFlatBlock
 ### Conclusion
 - Improved performance further by using SIMD instructions
 - Total Speedup at matrix Dim (1024) : 1789 ms / 225 ms = 7.9x
+
+## Using Open MPI
+[Open MPI] (src/Parallel.cpp)
+### Benchmark Results
+🚀 MPI Matrix Multiplication Benchmark 🚀
+Number of MPI processes: 8
+==========================================
+
+| Matrix Size | Block Size | Average Time (ms) | Performance (GFLOPS) |
+| ----------- | ---------- | ----------------- | -------------------- |
+| 512 x 512   | 16         | 2.89              | 93.02                |
+| 1024 x 1024 | 16         | 41.61             | 51.61                |
+| 2048 x 2048 | 16         | 328.00            | 52.38                |
+| 4096 x 4096 | 16         | 3013.40           | 45.61                |
+
+### Attempted Optimisation
+- Using Open MPI to parallelize the matrix multiplication
+- Using Cache Blocking with block size 16
+- Using SIMD instructions to perform 8 multiplications at once
+
+### Conclusion
+- Improved performance further by using Open MPI to parallelize the matrix multiplication
+
+## Updated Benchmark Results
+
+### SIMD
+
+| Benchmark    | Time (ms) | CPU (ms) | Iterations |
+| ------------ | --------- | -------- | ---------- |
+| BM_SIMD/512  | 11.5      | 11.5     | 60         |
+| BM_SIMD/1024 | 224       | 224      | 3          |
+| BM_SIMD/2048 | 2929      | 2929     | 1          |
+| BM_SIMD/4096 | 23572     | 23571    | 1          |
+
+### Cache Blocking
+
+| Benchmark                    | Time (ms) | CPU (ms) | Iterations |
+| ---------------------------- | --------- | -------- | ---------- |
+| BM_MultiplyFlatBlock/512/16  | 82.3      | 82.3     | 9          |
+| BM_MultiplyFlatBlock/1024/16 | 1786      | 1786     | 1          |
+| BM_MultiplyFlatBlock/2048/16 | 14212     | 14211    | 1          |
+| BM_MultiplyFlatBlock/4096/16 | 149143    | 149135   | 1          |
+| BM_MultiplyFlatBlock/512/32  | 208       | 208      | 3          |
+| BM_MultiplyFlatBlock/1024/32 | 2428      | 2428     | 1          |
+| BM_MultiplyFlatBlock/2048/32 | 19331     | 19330    | 1          |
+| BM_MultiplyFlatBlock/4096/32 | 183507    | 183498   | 1          |
+| BM_MultiplyFlatBlock/512/64  | 231       | 231      | 3          |
+| BM_MultiplyFlatBlock/1024/64 | 2642      | 2641     | 1          |
+| BM_MultiplyFlatBlock/2048/64 | 21104     | 21103    | 1          |
+| BM_MultiplyFlatBlock/4096/64 | 198452    | 198440   | 1          |
+
+### Flat Matrix Multiplication
+
+| Benchmark                        | Time (ms) | CPU (ms) | Iterations |
+| -------------------------------- | --------- | -------- | ---------- |
+| BM_FlatMatrixMultiplication/512  | 345       | 345      | 2          |
+| BM_FlatMatrixMultiplication/1024 | 3750      | 3750     | 1          |
+| BM_FlatMatrixMultiplication/2048 | 50526     | 50523    | 1          |
+| BM_FlatMatrixMultiplication/4096 | 422479    | 422448   | 1          |
