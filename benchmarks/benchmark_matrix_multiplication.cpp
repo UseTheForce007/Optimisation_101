@@ -25,7 +25,7 @@ static void BM_FlatMatrixMultiplication(benchmark::State &state) {
 
 BENCHMARK(BM_FlatMatrixMultiplication)
     ->RangeMultiplier(2)
-    ->Range(32, 1024)
+    ->Range(512, 4096)
     ->Unit(benchmark::kMillisecond);
 
 BENCHMARK_MAIN();

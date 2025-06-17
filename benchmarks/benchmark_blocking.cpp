@@ -17,5 +17,5 @@ static void BM_MultiplyFlatBlock(benchmark::State &state) {
 }
 
 BENCHMARK(BM_MultiplyFlatBlock)
-    ->ArgsProduct({{32, 64, 128, 256, 512, 1024}, {16, 32, 64}})
+    ->ArgsProduct({{512, 1024, 2048, 4096}, {16, 32, 64}})
     ->Unit(benchmark::kMillisecond);

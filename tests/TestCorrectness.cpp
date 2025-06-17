@@ -1,7 +1,9 @@
 #include "BaseCase.h"
 #include "Blocking.h"
+#include "Parallel.h"
 #include "SIMD.h"
 #include "SafeArray.h"
+#include "mpi.h"
 #include <cstdlib>
 #include <ctime>
 #include <gtest/gtest.h>
@@ -114,7 +116,37 @@ TEST(MatrixMultiplicationTest, SIMD) {
 
   EXPECT_TRUE(compare_flat_matrices(C_SIMD, C_flat));
 }
+
+TEST(MatrixMultiplicationTest, ParallelBlockingMPIRows) {
+  int rank;
+  MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+
+  constexpr size_t MATRIX_DIM = 32;
+  FlatMatrix A = create_random_flat_matrix(MATRIX_DIM, 42);
+  FlatMatrix B = create_random_flat_matrix(MATRIX_DIM, 41);
+
+  FlatMatrix C_parallel = ParallelBlockingMPIRows(A, B, MATRIX_DIM, 8);
+
+  // Only test the result on the master process (rank 0)
+  // since that's where the result is gathered
+  if (rank == 0) {
+    FlatMatrix C_flat = multiply_flat(A, B, MATRIX_DIM);
+    EXPECT_TRUE(compare_flat_matrices(C_parallel, C_flat));
+  }
+}
+
+class MPIEnvironment : public ::testing::Environment {
+public:
+  void SetUp() override { MPI_Init(nullptr, nullptr); }
+
+  void TearDown() override { MPI_Finalize(); }
+};
+
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
+
+  // Register MPI environment
+  ::testing::AddGlobalTestEnvironment(new MPIEnvironment);
+
   return RUN_ALL_TESTS();
 }
